@@ -1,0 +1,33 @@
+{
+  "name": "@andre-brdoch/sanity-plugin-schema-inspector",
+  "version": "1.0.0",
+  "description": "Tool plugin for inspecting your schema",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sanity",
+    "cms",
+    "plugin",
+    "schema"
+  ],
+  "author": "André Brdoch",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-icons": "^4.1.0",
+    "react-json-inspector": "^7.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "typescript": "^4.1.2"
+  }
+}

@@ -1,0 +1,105 @@
+@import 'part:@sanity/base/theme/variables-style';
+@import 'part:@sanity/base/theme/variables/selectable-item-style';
+
+.pane {
+  background: white;
+  /* padding: var(--medium-padding) 0; */
+  padding-bottom: var(--extra-large-padding);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  padding: var(--large-padding) var(--medium-padding);
+  margin: 0 auto;
+}
+
+.header {
+  border-bottom: 1px solid var(--gray-lighter);
+}
+
+.title {
+  margin: 0;
+  padding-left: var(--medium-padding);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-row-gap: var(--extra-large-padding);
+}
+
+.colHeader {
+  padding: 0 var(--medium-padding) var(--medium-padding);
+}
+
+.colTitle {
+  margin: 0;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link {
+  color: inherit;
+  text-decoration: inherit;
+  display: block;
+  padding: var(--extra-small-padding) var(--medium-padding);
+  border-radius: var(--border-radius-small);
+  cursor: default;
+
+  @nest &:hover {
+    background: var(--selectable-item-color-hover);
+  }
+  @nest &:active {
+    background: var(--selected-item-color);
+    color: white;
+  }
+}
+
+.downloadButton {
+  margin-bottom: var(--medium-padding);
+}
+
+.inspectorContainer {
+  composes: jsonInspectorContainer from '@sanity/desk-tool/lib/panes/documentPane/inspectDialog/inspectDialog.css';
+
+  @nest & :global .json-inspector__key, & :global .json-inspector__value {
+    position: relative;
+  }
+
+  @nest & .interactiveLabel {
+    /* overlay original label */
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+  }
+
+  @nest & .labelLink {
+    color: var(--state-info-color);
+    text-decoration: underline;
+
+    @nest &:hover {
+      color: var(--state-info-color--faded);
+    }
+  }
+
+  @nest & .copyLabel {
+    color: var(--state-success-color);
+
+    @nest &:hover {
+      color: var(--state-success-color--faded);
+    }
+  }
+
+  @nest & .labelIcon {
+    width: 11px;
+    position: absolute;
+    top: 0;
+    right: -2px;
+    transform: translateX(100%);
+  }
+}
