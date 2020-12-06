@@ -4,7 +4,9 @@
   "description": "Tool plugin for inspecting your schema",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src -d lib -x \".ts,.tsx,.js\" -D --no-copy-ignored",
+    "clean": "rimraf lib",
+    "run": "gulp"
   },
   "keywords": [
     "sanity",
@@ -20,6 +22,11 @@
     "react-json-inspector": "^7.1.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.7",
+    "@babel/core": "^7.12.7",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
+    "@babel/preset-typescript": "^7.12.7",
     "@types/react": "^17.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.14.0",
