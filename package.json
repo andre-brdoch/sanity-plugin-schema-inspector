@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src -d lib -x \".ts,.tsx,.js\" -D --no-copy-ignored",
-    "clean": "rimraf lib",
-    "run": "gulp"
+    "watch": "babel src -d lib -x \".ts,.tsx,.js\" -D --no-copy-ignored -w",
+    "clear": "rimraf lib"
   },
   "keywords": [
     "sanity",
@@ -17,6 +17,7 @@
   "author": "André Brdoch",
   "license": "MIT",
   "dependencies": {
+    "@sanity/desk-tool": "^2.0.9",
     "react": "^17.0.1",
     "react-icons": "^4.1.0",
     "react-json-inspector": "^7.1.1"
