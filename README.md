@@ -7,6 +7,7 @@
 ## Getting started
 
 Install with [Sanity CLI](https://www.sanity.io/docs/cli):
+
 `sanity install @andre-brdoch/sanity-plugin-schema-inspector`
 
 A new `Schemas` tab should show in your tools bar. All custom types defined in `schema.js` will be inspectable.
@@ -17,13 +18,11 @@ A new `Schemas` tab should show in your tools bar. All custom types defined in `
 - type definitions are linked
 - download selected schema as JSON
 - copy name by clicking `name` value
-- with routing
+- routing
 
 <img src="./docs/overview.png">
-*Overview of custom schema types*
 
 <img src="./docs/inspector.png">
-*Inspecting a schema type*
 
 ## Todos
 
@@ -32,5 +31,5 @@ A new `Schemas` tab should show in your tools bar. All custom types defined in `
 
 ## Known Issues
 
-- When navigating from other tools to the inspector, sometimes a reload is needed
+- When navigating from other tools to the inspector, a reload is sometimes required
 - certain fields like `icon` occupy a lot of space
