@@ -2,7 +2,7 @@
 
 [Sanity](https://www.sanity.io/) tool plugin for inspecting your schemas. Make life easier for your frontend developers!
 
-<img src="./docs/demo.gif">
+<img src="https://github.com/andre-brdoch/sanity-plugin-schema-inspector/blob/master/docs/demo.gif">
 
 ## Getting started
 
@@ -20,9 +20,9 @@ A new `Schemas` tab should show in your tools bar. All custom types defined in `
 - copy name by clicking `name` value
 - routing
 
-<img src="./docs/overview.png">
+<img src="https://github.com/andre-brdoch/sanity-plugin-schema-inspector/blob/master/docs/overview.png">
 
-<img src="./docs/inspector.png">
+<img src="https://github.com/andre-brdoch/sanity-plugin-schema-inspector/blob/master/docs/inspector.png">
 
 ## Todos
 
