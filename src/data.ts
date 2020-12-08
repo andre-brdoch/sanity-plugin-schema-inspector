@@ -19,7 +19,9 @@ import { GiSnail } from 'react-icons/gi';
 import { TiSortNumerically } from 'react-icons/ti';
 import { TypeType, TypeGroupType } from './types';
 
-const { types } = schema._source;
+const ignoreTypes = ['groqTest', 'category'];
+
+const types = schema._source.types.filter((t: TypeType) => !ignoreTypes.includes(t.name));
 const docTypes = types.filter((t: TypeType) => t.type === 'document');
 const customFieldTypes = types.filter((t: TypeType) => !docTypes.includes(t));
 
