@@ -61,7 +61,6 @@ const Inspector = (props: { type: TypeType }) => {
   return (
     typeClean && (
       <div className={styles.inspectorContainer}>
-        {/* too: make isExpanded configurable */}
         <ReactInspector
           data={typeClean}
           isExpanded={() => true}
