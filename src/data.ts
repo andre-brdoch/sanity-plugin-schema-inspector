@@ -19,9 +19,17 @@ import { GiSnail } from 'react-icons/gi';
 import { TiSortNumerically } from 'react-icons/ti';
 import { TypeType, TypeGroupType } from './types';
 
-const ignoreTypes = ['groqTest', 'category'];
+const typesToIgnore = ['groqTest', 'category'];
+const keysToIgnore = ['icon', 'title'];
 
-const types = schema._source.types.filter((t: TypeType) => !ignoreTypes.includes(t.name));
+if (!Array.isArray(typesToIgnore) || typesToIgnore.some(t => typeof t !== 'string')) {
+  throw new Error('"typesToIgnore" option of schema inspector must be an array of strings');
+}
+if (!Array.isArray(keysToIgnore) || keysToIgnore.some(k => typeof k !== 'string')) {
+  throw new Error('"keysToIgnore" option of schema inspector must be an array of strings');
+}
+
+const types = schema._source.types.filter((t: TypeType) => !typesToIgnore.includes(t.name));
 const docTypes = types.filter((t: TypeType) => t.type === 'document');
 const customFieldTypes = types.filter((t: TypeType) => !docTypes.includes(t));
 
@@ -74,8 +82,6 @@ export const typeExists = (name: string): boolean => getType(name) != null;
 
 export const isCoreType = (name: string): boolean => getTypeFromList(coreTypes, name) != null;
 
-const ignoreKeys = ['icon', 'title', 'fields'];
-
 const removeKeyFromObj = (obj: Object, keyToDelete: string) => {
   // deep traverse
   for (const key in obj) {
@@ -88,9 +94,9 @@ const removeKeyFromObj = (obj: Object, keyToDelete: string) => {
 };
 
 export const removeHiddenKeysFromType = (type: TypeType): TypeType => {
-  if (ignoreKeys.length === 0) return type;
+  if (keysToIgnore.length === 0) return type;
   const copy = { ...type };
-  ignoreKeys.forEach(key => {
+  keysToIgnore.forEach(key => {
     removeKeyFromObj(copy, key);
   });
   return copy;
