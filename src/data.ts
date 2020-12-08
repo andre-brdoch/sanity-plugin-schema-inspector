@@ -73,3 +73,25 @@ export const getType = (name: string): TypeType => getTypeFromList(allTypes, nam
 export const typeExists = (name: string): boolean => getType(name) != null;
 
 export const isCoreType = (name: string): boolean => getTypeFromList(coreTypes, name) != null;
+
+const ignoreKeys = ['icon', 'title', 'fields'];
+
+const removeKeyFromObj = (obj: Object, keyToDelete: string) => {
+  // deep traverse
+  for (const key in obj) {
+    if (key === keyToDelete) {
+      delete obj[key];
+    } else if (typeof obj[key] === 'object') {
+      removeKeyFromObj(obj[key], keyToDelete);
+    }
+  }
+};
+
+export const removeHiddenKeysFromType = (type: TypeType): TypeType => {
+  if (ignoreKeys.length === 0) return type;
+  const copy = { ...type };
+  ignoreKeys.forEach(key => {
+    removeKeyFromObj(copy, key);
+  });
+  return copy;
+};
