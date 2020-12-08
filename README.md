@@ -2,9 +2,10 @@
 
 [Sanity](https://www.sanity.io/) tool plugin for inspecting your schemas. Make life easier for your frontend developers - keep them sane!
 
+<br/>
+
 <img src="https://github.com/andre-brdoch/sanity-plugin-schema-inspector/blob/master/docs/demo.gif">
 
-<br/>
 <br/>
 
 ## Getting started
@@ -15,7 +16,6 @@ Install with [Sanity CLI](https://www.sanity.io/docs/cli):
 
 A new `Schemas` tab should show in your tools bar. All custom types defined in `schema.js` will be inspectable.
 
-<br/>
 <br/>
 
 ## Configuration
@@ -44,7 +44,6 @@ An array of strings with the names of types that should not be inspectable.
 **Example**: `typesToIgnore: ["faq"]`
 
 <br/>
-<br/>
 
 ## Features
 
@@ -54,18 +53,20 @@ An array of strings with the names of types that should not be inspectable.
 - copy name by clicking `name` value
 - routing
 
+<br/>
+
 <img src="https://github.com/andre-brdoch/sanity-plugin-schema-inspector/blob/master/docs/overview.png">
+
+<br/>
 
 <img src="https://github.com/andre-brdoch/sanity-plugin-schema-inspector/blob/master/docs/inspector.png">
 
-<br/>
 <br/>
 
 ## Todos
 
 - add option for resolving the complete data model, instead of just linking to the other types
 
-<br/>
 <br/>
 
 ## Known Issues
