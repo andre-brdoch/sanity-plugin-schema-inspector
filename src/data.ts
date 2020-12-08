@@ -17,10 +17,8 @@ import {
 import { VscReferences, VscTextSize } from 'react-icons/vsc';
 import { GiSnail } from 'react-icons/gi';
 import { TiSortNumerically } from 'react-icons/ti';
+import { typesToIgnore, keysToIgnore } from 'config:@andre-brdoch/sanity-plugin-schema-inspector';
 import { TypeType, TypeGroupType } from './types';
-
-const typesToIgnore = ['groqTest', 'category'];
-const keysToIgnore = ['icon', 'title'];
 
 if (!Array.isArray(typesToIgnore) || typesToIgnore.some(t => typeof t !== 'string')) {
   throw new Error('"typesToIgnore" option of schema inspector must be an array of strings');
@@ -96,7 +94,7 @@ const removeKeyFromObj = (obj: Object, keyToDelete: string) => {
 export const removeHiddenKeysFromType = (type: TypeType): TypeType => {
   if (keysToIgnore.length === 0) return type;
   const copy = { ...type };
-  keysToIgnore.forEach(key => {
+  keysToIgnore.forEach((key: string) => {
     removeKeyFromObj(copy, key);
   });
   return copy;
