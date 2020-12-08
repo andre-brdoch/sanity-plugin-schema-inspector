@@ -2,6 +2,14 @@
   "name": "@andre-brdoch/sanity-plugin-schema-inspector",
   "version": "1.0.1",
   "description": "Tool plugin for inspecting your schema",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andre-brdoch/sanity-plugin-schema-inspector.git"
+  },
+  "homepage": "https://github.com/andre-brdoch/sanity-plugin-schema-inspector#readme",
+  "bugs": {
+    "url": "https://github.com/andre-brdoch/sanity-plugin-schema-inspector/issues"
+  },
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src -d lib -x \".ts,.tsx,.js\" -D --no-copy-ignored",
