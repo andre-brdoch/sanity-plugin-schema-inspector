@@ -3,15 +3,13 @@ import ReactInspector from 'react-json-inspector';
 import Snackbar from 'part:@sanity/components/snackbar/default';
 import { MdOpenInNew, MdContentCopy } from 'react-icons/md';
 import TypeLink from './TypeLink';
-import { typeExists, isCoreType } from '../data';
+import { typeExists, isCoreType, removeHiddenKeysFromType } from '../data';
 import styles from './styles.css';
 import { TypeType } from '../types';
 
 const Inspector = (props: { type: TypeType }) => {
   const { type } = props;
-  const typeClean = { ...type };
-  // do not print full icon function
-  if (type?.icon?.name) typeClean.icon = type.icon.name;
+  const typeClean = removeHiddenKeysFromType(type);
   const [snackbarMsg, setSnackbarMsg] = React.useState(null);
 
   const copy = (text: string) => {
@@ -63,7 +61,6 @@ const Inspector = (props: { type: TypeType }) => {
   return (
     typeClean && (
       <div className={styles.inspectorContainer}>
-        {/* too: make isExpanded configurable */}
         <ReactInspector
           data={typeClean}
           isExpanded={() => true}

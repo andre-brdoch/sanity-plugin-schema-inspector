@@ -17,9 +17,20 @@ import {
 import { VscReferences, VscTextSize } from 'react-icons/vsc';
 import { GiSnail } from 'react-icons/gi';
 import { TiSortNumerically } from 'react-icons/ti';
+import { typesToIgnore, keysToIgnore } from 'config:@andre-brdoch/sanity-plugin-schema-inspector';
 import { TypeType, TypeGroupType } from './types';
 
-const { types } = schema._source;
+if (!Array.isArray(typesToIgnore) || typesToIgnore.some(t => typeof t !== 'string')) {
+  throw new Error('"typesToIgnore" option of schema inspector must be an array of strings');
+}
+if (!Array.isArray(keysToIgnore) || keysToIgnore.some(k => typeof k !== 'string')) {
+  throw new Error('"keysToIgnore" option of schema inspector must be an array of strings');
+}
+if (keysToIgnore.some(k => ['type', 'name'].includes(k))) {
+  throw new Error('"keysToIgnore" option of schema inspector must not include "type" or "name"');
+}
+
+const types = schema._source.types.filter((t: TypeType) => !typesToIgnore.includes(t.name));
 const docTypes = types.filter((t: TypeType) => t.type === 'document');
 const customFieldTypes = types.filter((t: TypeType) => !docTypes.includes(t));
 
@@ -71,3 +82,23 @@ export const getType = (name: string): TypeType => getTypeFromList(allTypes, nam
 export const typeExists = (name: string): boolean => getType(name) != null;
 
 export const isCoreType = (name: string): boolean => getTypeFromList(coreTypes, name) != null;
+
+const removeKeyFromObj = (obj: Object, keyToDelete: string) => {
+  // deep traverse
+  for (const key in obj) {
+    if (key === keyToDelete) {
+      delete obj[key];
+    } else if (typeof obj[key] === 'object') {
+      removeKeyFromObj(obj[key], keyToDelete);
+    }
+  }
+};
+
+export const removeHiddenKeysFromType = (type: TypeType): TypeType => {
+  if (keysToIgnore.length === 0) return type;
+  const copy = { ...type };
+  keysToIgnore.forEach((key: string) => {
+    removeKeyFromObj(copy, key);
+  });
+  return copy;
+};

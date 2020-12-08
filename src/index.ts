@@ -9,6 +9,5 @@ export default {
   name: 'schemas',
   router,
   icon: BiBook,
-  // Todo: pass options
   component: Tool,
 };
