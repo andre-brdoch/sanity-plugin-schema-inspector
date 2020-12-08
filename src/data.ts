@@ -26,6 +26,9 @@ if (!Array.isArray(typesToIgnore) || typesToIgnore.some(t => typeof t !== 'strin
 if (!Array.isArray(keysToIgnore) || keysToIgnore.some(k => typeof k !== 'string')) {
   throw new Error('"keysToIgnore" option of schema inspector must be an array of strings');
 }
+if (keysToIgnore.some(k => ['type', 'name'].includes(k))) {
+  throw new Error('"keysToIgnore" option of schema inspector must not include "type" or "name"');
+}
 
 const types = schema._source.types.filter((t: TypeType) => !typesToIgnore.includes(t.name));
 const docTypes = types.filter((t: TypeType) => t.type === 'document');
