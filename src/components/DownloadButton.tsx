@@ -3,8 +3,8 @@ import Button from 'part:@sanity/components/buttons/anchor';
 import { MdFileDownload } from 'react-icons/md';
 import styles from './styles.css';
 
-const DownloadButton = (props: { data: object; name: string }) => {
-  const { data, name } = props;
+const DownloadButton = (props: { data: object; name: string; children: React.ReactNode }) => {
+  const { data, name, children } = props;
   const json = JSON.stringify(data, null, 2);
   const href = `data:text/json;charset=utf-8,${encodeURIComponent(json)}`;
   const downloadName = `${name}-schema.json`;
@@ -18,7 +18,7 @@ const DownloadButton = (props: { data: object; name: string }) => {
       size="small"
       icon={MdFileDownload}
     >
-      Download JSON
+      {children}
     </Button>
   );
 };

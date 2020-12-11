@@ -4,7 +4,7 @@ import FullScreenDialog from 'part:@sanity/components/dialogs/fullscreen';
 import DownloadButton from './DownloadButton';
 import Inspector from './Inspector';
 import TypeGroup from './TypeGroup';
-import { groups, getType } from '../data';
+import { groups, getType, getTypesByGroups } from '../data';
 import { TypeGroupType, Router } from '../types';
 import styles from './styles.css';
 
@@ -29,7 +29,12 @@ const Tool = ({ title = 'Schema Inspector', router }: Props) => {
     <div className={styles.pane}>
       <header className={styles.header}>
         <div className={styles.container}>
-          <h1 className={styles.title}>{title}</h1>
+          <div className={styles.headerInner}>
+            <h1 className={styles.title}>{title}</h1>
+            <DownloadButton data={getTypesByGroups(['docTypes', 'customFieldTypes'])} name="all">
+              Full Schema
+            </DownloadButton>
+          </div>
         </div>
       </header>
 
@@ -43,7 +48,9 @@ const Tool = ({ title = 'Schema Inspector', router }: Props) => {
 
           {selectedType && (
             <FullScreenDialog title={typeName} onClose={closeDialog} onClickOutside={closeDialog}>
-              <DownloadButton data={selectedType} name={selectedType.name} />
+              <DownloadButton data={selectedType} name={selectedType.name}>
+                Download JSON
+              </DownloadButton>
               <Inspector type={selectedType} />
             </FullScreenDialog>
           )}
