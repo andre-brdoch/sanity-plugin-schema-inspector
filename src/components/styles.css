@@ -18,9 +18,12 @@
   border-bottom: 1px solid var(--gray-lighter);
 }
 
+.headerInner {
+  padding: 0 var(--medium-padding);
+}
+
 .title {
-  margin: 0;
-  padding-left: var(--medium-padding);
+  margin: 0 0 var(--medium-padding);
 }
 
 .row {
