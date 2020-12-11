@@ -6,7 +6,7 @@ import styles from './styles.css';
 const DownloadButton = (props: { data: object; name: string }) => {
   const { data, name } = props;
   const json = JSON.stringify(data, null, 2);
-  const href = `data:'text/json;charset=utf-8,${encodeURIComponent(json)}'`;
+  const href = `data:text/json;charset=utf-8,${encodeURIComponent(json)}`;
   const downloadName = `${name}-schema.json`;
 
   return (
