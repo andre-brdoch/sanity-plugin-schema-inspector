@@ -66,6 +66,7 @@ An array of strings with the names of types that should not be inspectable.
 ## Todos
 
 - add option for resolving the complete data model, instead of just linking to the other types
+- sort types 
 
 <br/>
 
