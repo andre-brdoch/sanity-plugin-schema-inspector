@@ -26,7 +26,6 @@
   "license": "MIT",
   "dependencies": {
     "@sanity/desk-tool": "^2.0.9",
-    "react": "^17.0.1",
     "react-icons": "^4.1.0",
     "react-json-inspector": "^7.1.1"
   },
@@ -45,5 +44,8 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "typescript": "^4.1.2"
+  },
+  "peerDependencies": {
+    "react": "^16 || ^17"
   }
 }
