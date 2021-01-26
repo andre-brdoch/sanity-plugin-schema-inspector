@@ -31,8 +31,12 @@ if (keysToIgnore.some(k => ['type', 'name'].includes(k))) {
 }
 
 const types = schema._source.types.filter((t: TypeType) => !typesToIgnore.includes(t.name));
-const docTypes = types.filter((t: TypeType) => t.type === 'document');
-const customFieldTypes = types.filter((t: TypeType) => !docTypes.includes(t));
+const docTypes = types
+  .filter((t: TypeType) => t.type === 'document')
+  .sort((a, b) => a.name.localeCompare(b.name));
+const customFieldTypes = types
+  .filter((t: TypeType) => !docTypes.includes(t))
+  .sort((a, b) => a.name.localeCompare(b.name));
 
 const coreTypes = [
   { name: 'array', type: 'type', icon: BiBracket },
@@ -72,16 +76,13 @@ export const groups: Array<TypeGroupType> = [
   },
 ];
 
-export const getTypesByGroups = (groupTypes: Array<string>) =>
-  groups
-    .filter((group: TypeGroupType) => groupTypes.includes(group.groupType))
-    .reduce((acc, val) => acc.concat(val.types), []);
+export const getTypesByGroups = (groupTypes: Array<string>) => groups
+  .filter((group: TypeGroupType) => groupTypes.includes(group.groupType))
+  .reduce((acc, val) => acc.concat(val.types), []);
 
-const getTypeFromList = (list: Array<TypeType>, name: string): TypeType =>
-  list.find((t: TypeType) => t.name === name);
+const getTypeFromList = (list: Array<TypeType>, name: string): TypeType => list.find((t: TypeType) => t.name === name);
 
-export const getType = (name: string): TypeType =>
-  getTypeFromList(getTypesByGroups(['docTypes', 'customFieldTypes', 'coreTypes']), name);
+export const getType = (name: string): TypeType => getTypeFromList(getTypesByGroups(['docTypes', 'customFieldTypes', 'coreTypes']), name);
 
 export const typeExists = (name: string): boolean => getType(name) != null;
 
