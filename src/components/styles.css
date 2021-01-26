@@ -91,10 +91,10 @@
   }
 
   @nest & .copyLabel {
-    color: var(--state-success-color);
+    color: var(--state-danger-color);
 
     @nest &:hover {
-      color: var(--state-success-color--faded);
+      color: var(--state-danger-color--faded);
     }
   }
 
