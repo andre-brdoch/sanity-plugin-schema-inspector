@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { withRouterHOC } from 'part:@sanity/base/router';
-import { studioTheme, ThemeProvider, ToastProvider } from '@sanity/ui';
 import FullScreenDialog from 'part:@sanity/components/dialogs/fullscreen';
 import DownloadButton from './DownloadButton';
 import Inspector from './Inspector';
@@ -27,41 +26,37 @@ const Tool = ({ title = 'Schema Inspector', router }: Props) => {
   const closeDialog = (): void => router.navigate({});
 
   return (
-    <ThemeProvider theme={studioTheme}>
-      <div className={styles.pane}>
-        <header className={styles.header}>
-          <div className={styles.container}>
-            <div className={styles.headerInner}>
-              <h1 className={styles.title}>{title}</h1>
-              <DownloadButton data={getTypesByGroups(['docTypes', 'customFieldTypes'])} name="all">
-                Full Schema
-              </DownloadButton>
-            </div>
-          </div>
-        </header>
-
+    <div className={styles.pane}>
+      <header className={styles.header}>
         <div className={styles.container}>
-          <main>
-            <div className={styles.row}>
-              {groups.map((group: TypeGroupType) => (
-                <TypeGroup key={group.groupType} {...group} />
-              ))}
-            </div>
-
-            {selectedType && (
-              <FullScreenDialog title={typeName} onClose={closeDialog} onClickOutside={closeDialog}>
-                <ToastProvider>
-                  <DownloadButton data={selectedType} name={selectedType.name}>
-                    Download JSON
-                  </DownloadButton>
-                  <Inspector type={selectedType} />
-                </ToastProvider>
-              </FullScreenDialog>
-            )}
-          </main>
+          <div className={styles.headerInner}>
+            <h1 className={styles.title}>{title}</h1>
+            <DownloadButton data={getTypesByGroups(['docTypes', 'customFieldTypes'])} name="all">
+              Full Schema
+            </DownloadButton>
+          </div>
         </div>
+      </header>
+
+      <div className={styles.container}>
+        <main>
+          <div className={styles.row}>
+            {groups.map((group: TypeGroupType) => (
+              <TypeGroup key={group.groupType} {...group} />
+            ))}
+          </div>
+
+          {selectedType && (
+            <FullScreenDialog title={typeName} onClose={closeDialog} onClickOutside={closeDialog}>
+              <DownloadButton data={selectedType} name={selectedType.name}>
+                Download JSON
+              </DownloadButton>
+              <Inspector type={selectedType} />
+            </FullScreenDialog>
+          )}
+        </main>
       </div>
-    </ThemeProvider>
+    </div>
   );
 };
 
