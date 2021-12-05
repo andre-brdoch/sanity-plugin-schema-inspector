@@ -25,7 +25,8 @@
   "author": "André Brdoch",
   "license": "MIT",
   "dependencies": {
-    "@sanity/desk-tool": "^2.22.3",
+    "@sanity/base": "^2.22.0",
+    "@sanity/desk-tool": "^2.22.0",
     "react-icons": "^4.1.0",
     "react-json-inspector": "^7.1.1"
   },
