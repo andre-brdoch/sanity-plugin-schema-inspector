@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withRouterHOC } from 'part:@sanity/base/router';
 import {
-  Grid, Stack, Card, Box, Heading,
+  Container, Grid, Stack, Card, Box, Heading,
 } from '@sanity/ui';
 import FullScreenDialog from 'part:@sanity/components/dialogs/fullscreen';
 import DownloadButton from './DownloadButton';
@@ -31,8 +31,8 @@ const Tool = ({ title = 'Schema Inspector', router }: Props) => {
   return (
     <div className={styles.pane}>
       <Card as="header" borderBottom tone="transparent">
-        <div className={styles.container}>
-          <Box paddingX={4}>
+        <Container width={3}>
+          <Box paddingY={5} paddingX={4}>
             <Stack space={4}>
               <Heading as="h1" size="4">
                 {title}
@@ -46,12 +46,12 @@ const Tool = ({ title = 'Schema Inspector', router }: Props) => {
               </div>
             </Stack>
           </Box>
-        </div>
+        </Container>
       </Card>
 
-      <div className={styles.container}>
-        <main>
-          <Grid columns={[1, 1, 3, 3]} gap={4}>
+      <Container as="main" width={3}>
+        <Box paddingY={5} paddingX={4}>
+          <Grid columns={[1, 1, 1, 3]} gap={4}>
             {groups.map((group: TypeGroupType) => (
               <TypeGroup key={group.groupType} {...group} />
             ))}
@@ -71,8 +71,8 @@ const Tool = ({ title = 'Schema Inspector', router }: Props) => {
               </Stack>
             </FullScreenDialog>
           )}
-        </main>
-      </div>
+        </Box>
+      </Container>
     </div>
   );
 };

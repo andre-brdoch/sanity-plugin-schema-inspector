@@ -10,24 +10,22 @@ const TypeGroup = (props: TypeGroupType) => {
   return (
     types?.length > 0 && (
       <Stack space={3}>
-        <Box as="header" paddingX={4}>
+        <header>
           <Heading as="h3" size={1}>
             {title}
           </Heading>
-        </Box>
+        </header>
 
         <ul className={styles.list}>
           {types.map((t: TypeType) => (
             <li key={t.name}>
-              <Box paddingX={4}>
-                <TypeLink
-                  typeName={t.name}
-                  isExternalLink={groupType === 'coreTypes'}
-                  className={styles.link}
-                >
-                  <DefaultPreview title={t.name} subtitle={t.title} media={t.icon} />
-                </TypeLink>
-              </Box>
+              <TypeLink
+                typeName={t.name}
+                isExternalLink={groupType === 'coreTypes'}
+                className={styles.link}
+              >
+                <DefaultPreview title={t.name} subtitle={t.title} media={t.icon} />
+              </TypeLink>
             </li>
           ))}
         </ul>
