@@ -48,11 +48,11 @@
   }
 
   @nest & .labelLink {
-    color: var(--state-info-color);
+    color: var(--state-success-color);
     text-decoration: underline;
 
     @nest &:hover {
-      color: var(--state-info-color--faded);
+      color: var(--state-success-color--faded);
     }
   }
 
