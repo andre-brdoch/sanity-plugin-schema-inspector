@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { withRouterHOC } from 'part:@sanity/base/router';
-import FullScreenDialog from 'part:@sanity/components/dialogs/fullscreen';
+import {
+  Container, Grid, Stack, Card, Box, Heading, Dialog,
+} from '@sanity/ui';
 import DownloadButton from './DownloadButton';
 import Inspector from './Inspector';
 import TypeGroup from './TypeGroup';
@@ -27,35 +29,51 @@ const Tool = ({ title = 'Schema Inspector', router }: Props) => {
 
   return (
     <div className={styles.pane}>
-      <header className={styles.header}>
-        <div className={styles.container}>
-          <div className={styles.headerInner}>
-            <h1 className={styles.title}>{title}</h1>
-            <DownloadButton data={getTypesByGroups(['docTypes', 'customFieldTypes'])} name="all">
-              Full Schema
-            </DownloadButton>
-          </div>
-        </div>
-      </header>
+      <Card as="header" borderBottom tone="transparent">
+        <Container width={3}>
+          <Box paddingY={5} paddingX={4}>
+            <Stack space={4}>
+              <Heading as="h1" size="4">
+                {title}
+              </Heading>
+              <div>
+                <DownloadButton
+                  data={getTypesByGroups(['docTypes', 'customFieldTypes'])}
+                  name="all"
+                  text="Full Schema"
+                />
+              </div>
+            </Stack>
+          </Box>
+        </Container>
+      </Card>
 
-      <div className={styles.container}>
-        <main>
-          <div className={styles.row}>
+      <Container as="main" width={3}>
+        <Box paddingY={5} paddingX={4}>
+          <Grid columns={[1, 1, 1, 3]} gap={4}>
             {groups.map((group: TypeGroupType) => (
               <TypeGroup key={group.groupType} {...group} />
             ))}
-          </div>
+          </Grid>
 
           {selectedType && (
-            <FullScreenDialog title={typeName} onClose={closeDialog} onClickOutside={closeDialog}>
-              <DownloadButton data={selectedType} name={selectedType.name}>
-                Download JSON
-              </DownloadButton>
-              <Inspector type={selectedType} />
-            </FullScreenDialog>
+            <Dialog header={typeName} width={3} onClose={closeDialog} onClickOutside={closeDialog}>
+              <Box padding={4}>
+                <Stack space="3">
+                  <div>
+                    <DownloadButton
+                      data={selectedType}
+                      name={selectedType.name}
+                      text="Download JSON"
+                    />
+                  </div>
+                  <Inspector type={selectedType} />
+                </Stack>
+              </Box>
+            </Dialog>
           )}
-        </main>
-      </div>
+        </Box>
+      </Container>
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import ReactInspector from 'react-json-inspector';
-import Snackbar from 'part:@sanity/components/snackbar/default';
+import { JSONInspectorWrapper } from '@sanity/desk-tool/lib/panes/document/inspectDialog/InspectDialog.styles';
 import { MdOpenInNew, MdContentCopy } from 'react-icons/md';
+import { useToast, TextInput } from '@sanity/ui';
 import TypeLink from './TypeLink';
 import { typeExists, isCoreType, removeHiddenKeysFromType } from '../data';
 import styles from './styles.css';
@@ -10,11 +11,11 @@ import { TypeType } from '../types';
 const Inspector = (props: { type: TypeType }) => {
   const { type } = props;
   const typeClean = removeHiddenKeysFromType(type);
-  const [snackbarMsg, setSnackbarMsg] = React.useState(null);
+  const toast = useToast();
 
   const copy = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
-      setSnackbarMsg(`Copied "${text}" to clipboard`);
+      toast.push({ title: `Copied "${text}" to clipboard` });
     });
   };
 
@@ -58,24 +59,31 @@ const Inspector = (props: { type: TypeType }) => {
     return '';
   };
 
+  const SearchBar = (props: { onChange: Function }) => {
+    const { onChange } = props;
+    return (
+      <div className={styles.searchBar}>
+        <TextInput
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onChange(e.target.value);
+          }}
+        />
+      </div>
+    );
+  };
+
   return (
     typeClean && (
-      <div className={styles.inspectorContainer}>
-        <ReactInspector
-          data={typeClean}
-          isExpanded={() => true}
-          interactiveLabel={interactiveLabel}
-        />
-
-        {snackbarMsg && (
-          <Snackbar
-            title={snackbarMsg}
-            kind="success"
-            timeout={1200}
-            onClose={() => setSnackbarMsg(null)}
+      <JSONInspectorWrapper>
+        <div className={styles.inspectorContainer}>
+          <ReactInspector
+            data={typeClean}
+            isExpanded={() => true}
+            interactiveLabel={interactiveLabel}
+            search={SearchBar}
           />
-        )}
-      </div>
+        </div>
+      </JSONInspectorWrapper>
     )
   );
 };

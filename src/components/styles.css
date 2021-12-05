@@ -3,41 +3,8 @@
 
 .pane {
   background: white;
-  /* padding: var(--medium-padding) 0; */
   padding-bottom: var(--extra-large-padding);
   min-height: 100vh;
-}
-
-.container {
-  max-width: 1200px;
-  padding: var(--large-padding) var(--medium-padding);
-  margin: 0 auto;
-}
-
-.header {
-  border-bottom: 1px solid var(--gray-lighter);
-}
-
-.headerInner {
-  padding: 0 var(--medium-padding);
-}
-
-.title {
-  margin: 0 0 var(--medium-padding);
-}
-
-.row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-row-gap: var(--extra-large-padding);
-}
-
-.colHeader {
-  padding: 0 var(--medium-padding) var(--medium-padding);
-}
-
-.colTitle {
-  margin: 0;
 }
 
 .list {
@@ -51,8 +18,9 @@
   text-decoration: inherit;
   display: block;
   padding: var(--extra-small-padding) var(--medium-padding);
+  /* align text with other typography */
+  margin: 0 calc(var(--medium-padding) * -1);
   border-radius: var(--border-radius-small);
-  cursor: default;
 
   @nest &:hover {
     background: var(--selectable-item-color-hover);
@@ -63,13 +31,11 @@
   }
 }
 
-.downloadButton {
-  margin-bottom: var(--medium-padding);
+.searchBar {
+  display: inline-block;
 }
 
 .inspectorContainer {
-  composes: jsonInspectorContainer from '@sanity/desk-tool/lib/panes/documentPane/inspectDialog/inspectDialog.css';
-
   @nest & :global .json-inspector__key, & :global .json-inspector__value {
     position: relative;
   }
