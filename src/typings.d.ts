@@ -2,6 +2,8 @@ declare module '*.css';
 
 declare module 'react-json-inspector';
 
+declare module '@sanity/ui';
+
 declare module 'part:@sanity/components/buttons/anchor' {
   import * as React from 'react';
   interface Props {
