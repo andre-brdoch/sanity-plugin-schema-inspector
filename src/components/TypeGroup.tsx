@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DefaultPreview from 'part:@sanity/components/previews/default';
+import { DefaultPreview } from '@sanity/base/components';
 import TypeLink from './TypeLink';
 import { TypeType, TypeGroupType } from '../types';
 import styles from './styles.css';

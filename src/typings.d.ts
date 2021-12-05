@@ -37,14 +37,14 @@ declare module 'part:@sanity/components/dialogs/fullscreen' {
   export default class FullScreenDialog extends React.Component<Props, any> {}
 }
 
-declare module 'part:@sanity/components/previews/default' {
+declare module '@sanity/base/components' {
   import * as React from 'react';
   interface Props {
     title?: string;
     subtitle?: string;
     media?: React.ReactNode;
   }
-  export default class DefaultPreview extends React.Component<Props, any> {}
+  export class DefaultPreview extends React.Component<Props, any> {}
 }
 
 declare module 'part:@sanity/base/router' {
