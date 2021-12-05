@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { DefaultPreview } from '@sanity/base/components';
+import { Heading } from '@sanity/ui';
 import TypeLink from './TypeLink';
 import { TypeType, TypeGroupType } from '../types';
 import styles from './styles.css';
@@ -10,7 +11,9 @@ const TypeGroup = (props: TypeGroupType) => {
     types?.length > 0 && (
       <div className={styles.col}>
         <header className={styles.colHeader}>
-          <h3 className={styles.colTitle}>{title}</h3>
+          <Heading as="h3" size={1}>
+            {title}
+          </Heading>
         </header>
 
         <ul className={styles.list}>

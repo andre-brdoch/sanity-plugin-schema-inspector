@@ -22,10 +22,6 @@
   padding: 0 var(--medium-padding);
 }
 
-.title {
-  margin: 0 0 var(--medium-padding);
-}
-
 .row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -34,10 +30,6 @@
 
 .colHeader {
   padding: 0 var(--medium-padding) var(--medium-padding);
-}
-
-.colTitle {
-  margin: 0;
 }
 
 .list {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { withRouterHOC } from 'part:@sanity/base/router';
-import { Stack } from '@sanity/ui';
+import { Stack, Heading } from '@sanity/ui';
 import FullScreenDialog from 'part:@sanity/components/dialogs/fullscreen';
 import DownloadButton from './DownloadButton';
 import Inspector from './Inspector';
@@ -31,8 +31,10 @@ const Tool = ({ title = 'Schema Inspector', router }: Props) => {
       <header className={styles.header}>
         <div className={styles.container}>
           <div className={styles.headerInner}>
-            <Stack space="1">
-              <h1 className={styles.title}>{title}</h1>
+            <Stack space={4}>
+              <Heading as="h1" size="4">
+                {title}
+              </Heading>
               <div>
                 <DownloadButton
                   data={getTypesByGroups(['docTypes', 'customFieldTypes'])}
