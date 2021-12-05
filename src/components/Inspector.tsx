@@ -61,21 +61,23 @@ const Inspector = (props: { type: TypeType }) => {
 
   return (
     typeClean && (
-      <JSONInspectorWrapper className={styles.inspectorContainer}>
-        <ReactInspector
-          data={typeClean}
-          isExpanded={() => true}
-          interactiveLabel={interactiveLabel}
-        />
-
-        {snackbarMsg && (
-          <Snackbar
-            title={snackbarMsg}
-            kind="success"
-            timeout={1200}
-            onClose={() => setSnackbarMsg(null)}
+      <JSONInspectorWrapper>
+        <div className={styles.inspectorContainer}>
+          <ReactInspector
+            data={typeClean}
+            isExpanded={() => true}
+            interactiveLabel={interactiveLabel}
           />
-        )}
+
+          {snackbarMsg && (
+            <Snackbar
+              title={snackbarMsg}
+              kind="success"
+              timeout={1200}
+              onClose={() => setSnackbarMsg(null)}
+            />
+          )}
+        </div>
       </JSONInspectorWrapper>
     )
   );
