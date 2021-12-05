@@ -2,7 +2,7 @@ import * as React from 'react';
 import ReactInspector from 'react-json-inspector';
 import { JSONInspectorWrapper } from '@sanity/desk-tool/lib/panes/document/inspectDialog/InspectDialog.styles';
 import { MdOpenInNew, MdContentCopy } from 'react-icons/md';
-import { useToast } from '@sanity/ui';
+import { useToast, TextInput } from '@sanity/ui';
 import TypeLink from './TypeLink';
 import { typeExists, isCoreType, removeHiddenKeysFromType } from '../data';
 import styles from './styles.css';
@@ -59,6 +59,19 @@ const Inspector = (props: { type: TypeType }) => {
     return '';
   };
 
+  const SearchBar = (props: { onChange: Function }) => {
+    const { onChange } = props;
+    return (
+      <div className={styles.searchBar}>
+        <TextInput
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onChange(e.target.value);
+          }}
+        />
+      </div>
+    );
+  };
+
   return (
     typeClean && (
       <JSONInspectorWrapper>
@@ -67,6 +80,7 @@ const Inspector = (props: { type: TypeType }) => {
             data={typeClean}
             isExpanded={() => true}
             interactiveLabel={interactiveLabel}
+            search={SearchBar}
           />
         </div>
       </JSONInspectorWrapper>
