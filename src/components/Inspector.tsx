@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ReactInspector from 'react-json-inspector';
 import Snackbar from 'part:@sanity/components/snackbar/default';
+import { JSONInspectorWrapper } from '@sanity/desk-tool/lib/panes/document/inspectDialog/InspectDialog.styles';
 import { MdOpenInNew, MdContentCopy } from 'react-icons/md';
 import TypeLink from './TypeLink';
 import { typeExists, isCoreType, removeHiddenKeysFromType } from '../data';
@@ -60,7 +61,7 @@ const Inspector = (props: { type: TypeType }) => {
 
   return (
     typeClean && (
-      <div className={styles.inspectorContainer}>
+      <JSONInspectorWrapper className={styles.inspectorContainer}>
         <ReactInspector
           data={typeClean}
           isExpanded={() => true}
@@ -75,7 +76,7 @@ const Inspector = (props: { type: TypeType }) => {
             onClose={() => setSnackbarMsg(null)}
           />
         )}
-      </div>
+      </JSONInspectorWrapper>
     )
   );
 };

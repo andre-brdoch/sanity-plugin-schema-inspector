@@ -68,8 +68,6 @@
 }
 
 .inspectorContainer {
-  composes: jsonInspectorContainer from '@sanity/desk-tool/lib/panes/documentPane/inspectDialog/inspectDialog.css';
-
   @nest & :global .json-inspector__key, & :global .json-inspector__value {
     position: relative;
   }
