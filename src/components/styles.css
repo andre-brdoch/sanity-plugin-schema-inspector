@@ -63,10 +63,6 @@
   }
 }
 
-.downloadButton {
-  margin-bottom: var(--medium-padding);
-}
-
 .inspectorContainer {
   @nest & :global .json-inspector__key, & :global .json-inspector__value {
     position: relative;

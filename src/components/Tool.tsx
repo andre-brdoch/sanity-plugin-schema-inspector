@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { withRouterHOC } from 'part:@sanity/base/router';
+import { Stack } from '@sanity/ui';
 import FullScreenDialog from 'part:@sanity/components/dialogs/fullscreen';
 import DownloadButton from './DownloadButton';
 import Inspector from './Inspector';
@@ -30,10 +31,16 @@ const Tool = ({ title = 'Schema Inspector', router }: Props) => {
       <header className={styles.header}>
         <div className={styles.container}>
           <div className={styles.headerInner}>
-            <h1 className={styles.title}>{title}</h1>
-            <DownloadButton data={getTypesByGroups(['docTypes', 'customFieldTypes'])} name="all">
-              Full Schema
-            </DownloadButton>
+            <Stack space="1">
+              <h1 className={styles.title}>{title}</h1>
+              <div>
+                <DownloadButton
+                  data={getTypesByGroups(['docTypes', 'customFieldTypes'])}
+                  name="all"
+                  text="Full Schema"
+                />
+              </div>
+            </Stack>
           </div>
         </div>
       </header>
@@ -48,10 +55,16 @@ const Tool = ({ title = 'Schema Inspector', router }: Props) => {
 
           {selectedType && (
             <FullScreenDialog title={typeName} onClose={closeDialog} onClickOutside={closeDialog}>
-              <DownloadButton data={selectedType} name={selectedType.name}>
-                Download JSON
-              </DownloadButton>
-              <Inspector type={selectedType} />
+              <Stack space="3">
+                <div>
+                  <DownloadButton
+                    data={selectedType}
+                    name={selectedType.name}
+                    text="Download JSON"
+                  />
+                </div>
+                <Inspector type={selectedType} />
+              </Stack>
             </FullScreenDialog>
           )}
         </main>

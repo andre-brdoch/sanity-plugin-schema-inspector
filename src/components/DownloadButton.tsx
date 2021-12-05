@@ -1,25 +1,23 @@
 import * as React from 'react';
-import Button from 'part:@sanity/components/buttons/anchor';
+import { Button } from '@sanity/ui';
 import { MdFileDownload } from 'react-icons/md';
-import styles from './styles.css';
 
-const DownloadButton = (props: { data: object; name: string; children: React.ReactNode }) => {
-  const { data, name, children } = props;
+const DownloadButton = (props: { data: object; name: string; text: string }) => {
+  const { data, name, text } = props;
   const json = JSON.stringify(data, null, 2);
   const href = `data:text/json;charset=utf-8,${encodeURIComponent(json)}`;
   const downloadName = `${name}-schema.json`;
 
   return (
     <Button
+      as="a"
       href={href}
       download={downloadName}
-      className={styles.downloadButton}
-      color="primary"
-      size="small"
+      justify="flex-start"
+      tone="positive"
       icon={MdFileDownload}
-    >
-      {children}
-    </Button>
+      text={text}
+    />
   );
 };
 
